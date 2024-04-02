@@ -88,13 +88,13 @@ def results_extractor(batch, values, p_course, table_name, roll_num, p_need, reg
 def result_link_loader(ac_year, p_course, sem, reg, e_type, month, year, table_name):
     """This function returns the link of the results."""
     if e_type == "regular":
-        cursor.execute(f"SELECT link from {table_name} where year = '{year}' and month like '%{month}%' \
+        cursor.execute(f"SELECT link from {table_name} where year like '%{year}%' and month like '%{month}%' \
         and academic_year = '{ac_year}' and semester = '{sem}' and course = '{p_course}' \
         and regulation = '{reg}'and regular = 'yes' ")
     elif e_type == "supply" or e_type == "supplementary":
         s_month, s_year = input("please enter the supply details in this format feb 2023: ").strip().split()
         print(ac_year, p_course, sem, reg, e_type, s_month, s_year, table_name)
-        cursor.execute(f"SELECT link from {table_name} where year = '{s_year}' and month like '%{s_month}%' \
+        cursor.execute(f"SELECT link from {table_name} where year like '%{s_year}%' and month like '%{s_month}%' \
         and academic_year = '{ac_year}' and semester = '{sem}' and course = '{p_course}' \
         and regulation = '{reg}'and supply = 'yes' ")
     link = cursor.fetchone()
@@ -179,7 +179,7 @@ def checker(url, table, details, admin=False):
             new_links.append([each_text, each['href']])
 
 
-user_roll_num = "214e1a0901"  # input("enter your roll_num: ")
+user_roll_num = "224e1a0541"  # input("enter your roll_num: ")
 need = "all"  # input("enter sem: ")
 exam_type = 'regular'  # input("enter exam_type: ")
 request = "on_display"
