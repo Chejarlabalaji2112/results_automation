@@ -33,7 +33,12 @@ def pre_processor(roll_num):
             p_course = "mca"
         print(p_course, time_table, p_join_year)
         cursor.execute(f"select `{p_course}` from {time_table} where joined_year = {p_join_year}")
-        values = json.loads(cursor.fetchone()[0])
+        data = cursor.fetchone()
+        if not data:
+            print("sorry! you specified year details are not available")
+            exit()
+        values = json.loads(data[0])
+
 
         if p_join_year > 22:  # To know student regulation.
             reg = "r23"
@@ -179,7 +184,7 @@ def checker(url, table, details, admin=False):
             new_links.append([each_text, each['href']])
 
 
-user_roll_num = "224e1a0541"  # input("enter your roll_num: ")
+user_roll_num = "19f61a0541"  # input("enter your roll_num: ")
 need = "all"  # input("enter sem: ")
 exam_type = 'regular'  # input("enter exam_type: ")
 request = "on_display"
