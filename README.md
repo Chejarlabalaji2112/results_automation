@@ -10,6 +10,6 @@
 -->or you can even check your recent results are uploaded in your college website or not and get notified.  
 
 --alternatively a new file is also added which is results_bot.py , use the code and get your bot fetch results for your in the format of files...
+![tele_bot](https://github.com/user-attachments/assets/56cae015-7807-4408-b47f-6b228651a794)
 
-NOTE: This project can be useful for colleges sietk and sistk..( puttur)
 
