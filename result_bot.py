@@ -148,31 +148,31 @@ def checker(url, table, details, admin=False):
 
 
 def main_fun(user_roll_num, need, request, exam_type):
-  """This is the function which it handles all the code."""
-	all_values, course, t_name, join_year, entry, regulation, main_fun.college = pre_processor(user_roll_num)
+    """This is the function which it handles all the code."""
+    all_values, course, t_name, join_year, entry, regulation, main_fun.college = pre_processor(user_roll_num)
 
-	try:
-	    if need == "all":
-	        keys = list(all_values.keys())
-	        for key in keys:
-	            if (entry == "ecet") and (key != "1-1" and key != "1-2"):
-	                file_saver(user_roll_num, key, results_extractor(join_year, all_values, course, t_name, user_roll_num, key, regulation,
+    try:
+        if need == "all":
+            keys = list(all_values.keys())
+            for key in keys:
+                if (entry == "ecet") and (key != "1-1" and key != "1-2"):
+                    file_saver(user_roll_num, key, results_extractor(join_year, all_values, course, t_name, user_roll_num, key, regulation,
                                                        e_type = 'regular'))
-	            elif entry == "eamcet":
-	                file_saver(user_roll_num, key, results_extractor(join_year, all_values, course, t_name, user_roll_num, key, regulation,
+                elif entry == "eamcet":
+                    file_saver(user_roll_num, key, results_extractor(join_year, all_values, course, t_name, user_roll_num, key, regulation,
                                                        e_type = 'regular'))
-	        if entry == "ecet":
-	            print("AS the roll_num entered is LE , NO 1st year results are available")
-	            
-	    else:
-	        file_saver(user_roll_num, key, results_extractor(join_year, all_values, course, t_name, user_roll_num, key, regulation,
+            if entry == "ecet":
+                print("AS the roll_num entered is LE , NO 1st year results are available")
+
+        else:
+            file_saver(user_roll_num, need, results_extractor(join_year, all_values, course, t_name, user_roll_num, need, regulation,
                                                        e_type = 'regular'))
-	except URLError:
-	    print("There is problem while contacting website, CHECK YOUR INTERNET CONNECTION.")
+    except URLError:
+        print("There is problem while contacting website, CHECK YOUR INTERNET CONNECTION.")
 try:
-    bot = telebot.TeleBot(YOUR bot token here.....)
-    def get_results(roll_num,needed,req, type):
-    	main_fun(roll_num, needed, req,type)
+    bot = telebot.TeleBot('')
+    def get_results(roll_num, needed, req, type):
+        main_fun(roll_num, needed, req,type)
     @bot.message_handler(func = lambda message : True)
     def send_files(message):
       mssg = message.text.strip().lower().split()
@@ -192,8 +192,8 @@ try:
          else:
              bot.send_message(chat_id, "Folder not found")
       else:
-       	bot.reply_to(message,  "enter in the format '[22f61a0901 all or 2-1'] ")
-    
+        bot.reply_to(message,  "enter in the format '[22f61a0901 all or 2-1'] ")
+
     bot.polling()
 except Exception as e:
     print("error is :", e)
